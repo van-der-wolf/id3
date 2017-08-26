@@ -4,6 +4,7 @@ namespace Id3;
 
 use Id3\Exceptions\TagNotFoundException;
 use Id3\Tag\Id3TagV1;
+use Id3\Tag\Id3V22;
 use Id3\Tag\Id3V23;
 use Id3\Tag\Id3V24;
 use Id3\Tag\Id3TagV2;
@@ -49,7 +50,7 @@ class Mp3File
         } catch (TagNotFoundException $exception) {
         }
         try {
-
+            return new Id3V22($file);
         } catch (TagNotFoundException $exception) {
         }
     }

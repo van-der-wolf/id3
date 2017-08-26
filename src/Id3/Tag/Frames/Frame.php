@@ -22,4 +22,9 @@ class Frame
         $this->frameContent = $content;
     }
 
+    public function getId(): string
+    {
+        return $this->frameHeader->getType();
+    }
+
 }

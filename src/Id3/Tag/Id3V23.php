@@ -9,7 +9,7 @@
 namespace Id3\Tag;
 
 
-class Id3V23 extends Id3TagV2
+class Id3V23 extends Id3V22
 {
 
     protected function checkVersion(string $majorVersion, string $revision): bool

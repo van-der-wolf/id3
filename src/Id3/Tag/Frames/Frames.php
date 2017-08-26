@@ -17,7 +17,7 @@ class Frames
 
     public function addFrame(Frame $frame): Frames
     {
-        $this->frames[] = $frame;
+        $this->frames[$frame->getId()] = $frame;
         return $this;
     }
 
