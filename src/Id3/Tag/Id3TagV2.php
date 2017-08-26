@@ -15,7 +15,7 @@ use Id3\Tag\Frames\Frames;
  * Date: 25.08.17
  * Time: 22:54
  */
-abstract class IdTag
+abstract class Id3TagV2
 {
 
     /** @var int */
@@ -26,6 +26,7 @@ abstract class IdTag
     protected $size;
     /** @var array */
     protected $frames;
+    /** @var  */
     protected $extendedHeader;
 
     public function __construct(File $file)

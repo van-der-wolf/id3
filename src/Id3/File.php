@@ -12,7 +12,9 @@ namespace Id3;
 class File
 {
 
+    /** @var string */
     private $fileName;
+    /** @var bool|resource */
     private $resource;
 
     public function __construct(string $fileName, string $readMode)
@@ -21,8 +23,14 @@ class File
         $this->resource = fopen($fileName, $readMode);
     }
 
-    public function getResource() {
+    public function getResource()
+    {
         return $this->resource;
+    }
+
+    public function getName(): string
+    {
+        return $this->fileName;
     }
 
 }

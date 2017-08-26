@@ -3,9 +3,10 @@
 namespace Id3;
 
 use Id3\Exceptions\TagNotFoundException;
-use Id3\Tag\Id3v23;
-use Id3\Tag\Id3v24;
-use Id3\Tag\IdTag;
+use Id3\Tag\Id3TagV1;
+use Id3\Tag\Id3V23;
+use Id3\Tag\Id3V24;
+use Id3\Tag\Id3TagV2;
 
 /**
  * Created by PhpStorm.
@@ -17,25 +18,39 @@ class Mp3File
 {
     /** @var bool|resource */
     private $file;
-    /** @var IdTag */
-    private $tag;
+    /** @var Id3TagV2 */
+    private $tagV2;
+    private $tagV1;
 
     public function __construct(string $fileName)
     {
         $this->file = new File($fileName, 'rb');
-        $this->tag = $this->readTag($this->file);
+        $this->tagV1 = $this->readV1Tag($this->file);
+        $this->tagV2 = $this->readV2Tag($this->file);
     }
 
-    private function readTag(File $file): IdTag
+    private function readV1Tag(File $file): Id3TagV1
     {
         try {
-            return new Id3v24($file);
+            return new Id3TagV1($file);
+        } catch (TagNotFoundException $exception) {
+            return null;
+        }
+    }
+
+    private function readV2Tag(File $file): Id3TagV2
+    {
+        try {
+            return new Id3V24($file);
         } catch (TagNotFoundException $exception) {
         }
         try {
-            return new Id3v23($file);
+            return new Id3V23($file);
         } catch (TagNotFoundException $exception) {
+        }
+        try {
 
+        } catch (TagNotFoundException $exception) {
         }
     }
 

@@ -9,13 +9,13 @@
 namespace Id3\Tag;
 
 
-class Id3v23 extends IdTag
+class Id3V24 extends Id3TagV2
 {
 
     protected function checkVersion(string $majorVersion, string $revision): bool
     {
         $majorVersion = bin2hex($majorVersion);
-        if ((int) $majorVersion === 3) {
+        if ((int) $majorVersion === 4) {
             return true;
         }
         return false;
