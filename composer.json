@@ -1,0 +1,14 @@
+{
+    "name": "van-der-wolf/id3",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Ivan Prokopenko",
+            "email": "prokopenko.ivan.93@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-0": {"Id3": "src/"}
+    }
+}
