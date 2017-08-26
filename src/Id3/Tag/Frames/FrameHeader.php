@@ -45,4 +45,9 @@ class FrameHeader
         return $this->size;
     }
 
+    public function getType(): string
+    {
+        return $this->frameId;
+    }
+
 }

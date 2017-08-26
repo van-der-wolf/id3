@@ -5,6 +5,7 @@ namespace Id3\Tag;
 use Id3\Exceptions\TagNotFoundException;
 use Id3\File;
 use Id3\Tag\Frames\Frame;
+use Id3\Tag\Frames\FrameFactory;
 use Id3\Tag\Frames\FrameHeader;
 use Id3\Tag\Frames\Frames;
 
@@ -37,14 +38,24 @@ abstract class IdTag
     protected function read(File $file)
     {
         fseek($file->getResource(), 0);
-        $tag = fread($file->getResource(), 3);
-        $this->version = $this->readMajorVersion($file);
-        $this->flags = $this->readFlags($file);
-        if ($this->flags->hasExtendedHeader()) {
-            $this->extendedHeader = new ExtendedHeader($file);
+        if ($this->readId($file)) {
+            $this->version = $this->readMajorVersion($file);
+            $this->flags = $this->readFlags($file);
+            if ($this->flags->hasExtendedHeader()) {
+                $this->extendedHeader = new ExtendedHeader($file);
+            }
+            $this->size = $this->readSize($file);
+            $this->frames = $this->readFrames($file);
         }
-        $this->size = $this->readSize($file);
-        $this->frames = $this->readFrames($file);
+    }
+
+    private function readId(File $file): bool {
+        fseek($file->getResource(), 0);
+        $tag = fread($file->getResource(), 3);
+        if ($tag !== 'ID3') {
+            throw new TagNotFoundException('Id3 tag not found');
+        }
+        return true;
     }
 
     protected function readMajorVersion(File $file): int
@@ -71,7 +82,8 @@ abstract class IdTag
     {
         fseek($file->getResource(), TagConstants::SIZE_OFFSET);
         $size = fread($file->getResource(), TagConstants::SIZE_HEADER_LENGTH);
-        return hexdec(bin2hex($size));
+        $buffer = str_split($size);
+        return (hexdec(bin2hex($buffer[0])) << 21) + (hexdec(bin2hex($buffer[1])) << 14) + (hexdec(bin2hex($buffer[2])) << 7) + hexdec(bin2hex($buffer[3]));
     }
 
     protected function readFrames(File $file): Frames
@@ -80,10 +92,11 @@ abstract class IdTag
         $offset = TagConstants::calculateFramesOffset();
         while ($offset < $this->size) {
             $frameHeader = $this->readFrameHeader($file, $offset);
-            if (!$frameHeader->getSize()) {
-                break;
-            }
             $offset = $offset + TagConstants::FRAME_HEADER_LENGTH;
+            if (!$frameHeader->getSize()) {
+                continue;
+            }
+
             $frames->addFrame($this->createFrame($frameHeader, $file, $offset));
             $offset = $offset + $frameHeader->getSize();
         }
@@ -95,7 +108,7 @@ abstract class IdTag
     {
         fseek($file->getResource(), $offset);
         $frameContent = fread($file->getResource(), $frameHeader->getSize());
-        return new Frame($frameHeader, $frameContent);
+        return FrameFactory::create($frameHeader->getType(), $frameHeader, $frameContent);
     }
 
     private function readFrameHeader(File $file, int $offset): FrameHeader
