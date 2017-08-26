@@ -8,8 +8,8 @@
 
 namespace Id3\Tag\Frames;
 
-
-class FrameLINK
+#sec4.21 Linked information
+class FrameLINK extends Frame
 {
 
 }

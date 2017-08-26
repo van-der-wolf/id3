@@ -8,8 +8,8 @@
 
 namespace Id3\Tag\Frames;
 
-
-class FrameWPUB
+#WPUB Publishers official webpage
+class FrameWPUB extends Frame
 {
 
 }

@@ -3,13 +3,13 @@
  * Created by PhpStorm.
  * User: wolfie
  * Date: 26.08.17
- * Time: 11:13
+ * Time: 11:36
  */
 
 namespace Id3\Tag\Frames;
 
-#sec4.6 Event timing codes
-class FrameETCO extends Frame
+#TOWN File owner/licensee
+class FrameTOWN extends Frame
 {
 
 }

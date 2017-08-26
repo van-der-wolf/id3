@@ -8,8 +8,8 @@
 
 namespace Id3\Tag\Frames;
 
-
-class FrameEQUA
+#sec4.13 Equalization
+class FrameEQUA extends Frame
 {
 
 }

@@ -8,8 +8,8 @@
 
 namespace Id3\Tag\Frames;
 
-
-class FrameWOAS
+#WOAS Official audio source webpage
+class FrameWOAS extends Frame
 {
 
 }

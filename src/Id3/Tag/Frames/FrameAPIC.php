@@ -8,8 +8,8 @@
 
 namespace Id3\Tag\Frames;
 
-
-class FrameAPIC
+#sec4.15 Attached picture
+class FrameAPIC extends Frame
 {
 
 }

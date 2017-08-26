@@ -8,8 +8,8 @@
 
 namespace Id3\Tag\Frames;
 
-
-class FrameCOMM
+#sec4.11 Comments
+class FrameCOMM extends Frame
 {
 
 }

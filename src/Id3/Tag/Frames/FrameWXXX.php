@@ -8,8 +8,8 @@
 
 namespace Id3\Tag\Frames;
 
-
-class FrameWXXX
+#WXXX User defined URL link frame
+class FrameWXXX extends Frame
 {
 
 }

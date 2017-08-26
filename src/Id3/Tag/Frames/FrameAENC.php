@@ -8,8 +8,8 @@
 
 namespace Id3\Tag\Frames;
 
-
-class FrameAENC
+#sec4.20|Audio encryption
+class FrameAENC extends Frame
 {
 
 }

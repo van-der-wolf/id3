@@ -8,8 +8,8 @@
 
 namespace Id3\Tag\Frames;
 
-
-class FrameENCR
+#sec4.26 Encryption method registration
+class FrameENCR extends Frame
 {
 
 }

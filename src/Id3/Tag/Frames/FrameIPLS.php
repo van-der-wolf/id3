@@ -8,8 +8,8 @@
 
 namespace Id3\Tag\Frames;
 
-
-class FrameIPLS
+#sec4.4 Involved people list
+class FrameIPLS extends Frame
 {
 
 }

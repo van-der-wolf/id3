@@ -8,8 +8,8 @@
 
 namespace Id3\Tag\Frames;
 
-
-class FrameCOMR
+#sec4.25 Commercial frame
+class FrameCOMR extends Frame
 {
 
 }

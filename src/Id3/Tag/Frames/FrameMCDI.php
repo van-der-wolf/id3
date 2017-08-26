@@ -8,8 +8,8 @@
 
 namespace Id3\Tag\Frames;
 
-
-class FrameMCDI
+#sec4.5 Music CD identifier
+class FrameMCDI extends Frame
 {
 
 }

@@ -8,8 +8,8 @@
 
 namespace Id3\Tag\Frames;
 
-
-class FrameWORS
+#WORS Official internet radio station homepage
+class FrameWORS extends Frame
 {
 
 }

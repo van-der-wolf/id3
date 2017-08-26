@@ -8,8 +8,8 @@
 
 namespace Id3\Tag\Frames;
 
-
-class FrameGRID
+#sec4.27 Group identification registration
+class FrameGRID extends Frame
 {
 
 }

@@ -8,8 +8,8 @@
 
 namespace Id3\Tag\Frames;
 
-
-class FrameWPAY
+#WPAY Payment
+class FrameWPAY extends Frame
 {
 
 }

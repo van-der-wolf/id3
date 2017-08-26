@@ -8,8 +8,8 @@
 
 namespace Id3\Tag\Frames;
 
-
-class FrameGEOB
+#sec4.16 General encapsulated object
+class FrameGEOB extends Frame
 {
 
 }
